@@ -1,0 +1,115 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+header {
+  background-color: #fff;
+  border-bottom: 2px solid #007BFF; /* Blue line below header */
+  padding: 20px;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 24px;
+}
+
+nav {
+  margin-top: 10px;
+}
+
+nav a {
+  margin: 0 15px;
+  text-decoration: none;
+  color: #333;
+}
+
+nav a.active {
+  font-weight: bold;
+}
+
+main {
+  display: flex;
+  padding: 20px;
+}
+
+aside {
+  width: 200px;
+  background-color: #e9ecef; /* Gray background for the directory */
+  padding: 20px;
+  border-radius: 8px;
+}
+
+aside ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+aside ul li {
+  margin-bottom: 10px;
+}
+
+aside ul li a {
+  text-decoration: none;
+  color: #333;
+  font-size: 18px;
+}
+
+
+
+section {
+  flex-grow: 1;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  margin-left: 20px;
+}
+
+section h2 {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+table {
+  flex-direction: row;
+}
+
+p {
+  line-height: 150%;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+#jumpButton {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: #0061A5;
+  color: white;
+  text-align: center;
+  line-height: 50px;
+  cursor: pointer;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
+
+#nullsection {
+  flex-grow: 1;
+  padding: 20px;
+  border-radius: 8px;
+  margin-left: 20px;
+}
+
+.pdf-link {
+  float: right;
+}
