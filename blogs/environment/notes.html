@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>notes.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE">环境配置</h1>
+<p><a href="https://zh.d2l.ai/chapter_installation/index.html#:~:text=%E6%88%91%E4%BB%AC%E9%9C%80%E8%A6%81%E9%85%8D%E7%BD%AE%E4%B8%80%E4%B8%AA%E7%8E%AF%E5%A2%83%E6%9D%A5%E8%BF%90%E8%A1%8C%20Python%E3%80%81Jupyter%20Notebook%E3%80%81%E7%9B%B8%E5%85%B3%E5%BA%93%E4%BB%A5%E5%8F%8A%E8%BF%90%E8%A1%8C%E6%9C%AC%E4%B9%A6%E6%89%80%E9%9C%80%E7%9A%84%E4%BB%A3%E7%A0%81%EF%BC%8C%E4%BB%A5%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8%E5%B9%B6%E8%8E%B7%E5%BE%97%E5%8A%A8%E6%89%8B%E5%AD%A6%E4%B9%A0%E7%BB%8F%E9%AA%8C%E3%80%82">我们需要配置一个环境来运行 Python、Jupyter Notebook、相关库以及运行本书所需的代码，以快速入门并获得动手学习经验。</a></p>
+<p>以下流程建立在我们第一节上机课安装的<code>wsl2(ubantu)</code>环境下</p>
+<h2 id="%E7%A1%AE%E5%AE%9Apython%E7%89%88%E6%9C%AC">确定python版本</h2>
+<p>在Ubuntu系统中查看Python版本，你可以使用以下命令：</p>
+<p>打开终端。
+输入以下命令之一：
+查看系统默认Python版本：</p>
+<pre class="hljs"><code><div>python --version
+</div></code></pre>
+<p>或者</p>
+<pre class="hljs"><code><div>python -V
+</div></code></pre>
+<p>如果系统中安装了多个Python版本，你可以使用python3来查看Python 3.x的版本：</p>
+<pre class="hljs"><code><div>python3 --version
+</div></code></pre>
+<p>或者</p>
+<pre class="hljs"><code><div>python3 -V
+</div></code></pre>
+<h2 id="%E5%AE%89%E8%A3%85miniconda">安装Miniconda</h2>
+<p>下载链接:
+<a href="https://docs.anaconda.com/miniconda/">miniconda</a></p>
+<p>如果我们使用Linux，假设Python版本是3.9，将下载名称包含字符串“Linux”的bash脚本，并执行以下操作：</p>
+<p>建议直接下载latest版本即可</p>
+<pre class="hljs"><code><div># 文件名可能会更改
+sh Miniconda3-py39_4.12.0-Linux-x86_64.sh -b
+# 若下载的latest版本
+sh Miniconda3-latest-Linux-x86_64.sh -b
+</div></code></pre>
+<p>接下来，初始化终端Shell，以便我们可以直接运行conda。</p>
+<pre class="hljs"><code><div>~/miniconda3/bin/conda init
+</div></code></pre>
+<p>现在关闭并重新打开当前的shell。并使用下面的命令创建一个新的环境：</p>
+<pre class="hljs"><code><div>conda create --name d2l python=3.9 -y
+</div></code></pre>
+<p>现在激活 d2l 环境：</p>
+<pre class="hljs"><code><div>conda activate d2l
+</div></code></pre>
+<p>PS:</p>
+<p>助教尝试的时候使用的指令(仅供参考)</p>
+<pre class="hljs"><code><div>python3 --version
+# 下载的文件为 Miniconda3-latest-Linux-x86_64.sh
+sh Miniconda3-latest-Linux-x86_64.sh -b
+~/miniconda3/bin/conda init
+# 现在关闭并重新打开当前的shell。并使用下面的命令创建一个新的环境
+conda create --name d2l python=3.10 -y
+conda activate d2l
+</div></code></pre>
+<p>现在你可以看到你的终端大概如下:</p>
+<p><img src="photo/actd2l.png" alt=""></p>
+<p>出现了<code>(base)</code>, 并在执行<code>conda activate d2l</code>后出现<code>(d2l)</code></p>
+<h2 id="%E5%AE%89%E8%A3%85%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6%E5%92%8Cd2l%E8%BD%AF%E4%BB%B6%E5%8C%85">安装深度学习框架和d2l软件包</h2>
+<p>请先确定你的计算机是否装有NVIDIA GPU</p>
+<p>安装(or 确认是否安装)CUDA</p>
+<pre class="hljs"><code><div>nvcc --version
+</div></code></pre>
+<p>若未安装</p>
+<pre class="hljs"><code><div># 可能要占用比较大的空间
+sudo apt install nvidia-cuda-toolkit
+</div></code></pre>
+<p>安装MXNet的GPU版本，首先需要知道已安装的CUDA版本。假设已安装CUDA 11.5版本，请执行以下命令：</p>
+<pre class="hljs"><code><div>pip install mxnet-cu115
+</div></code></pre>
+<p>可以根据CUDA版本更改如上mxnet-cu101的最后一位数字， 例如：CUDA 10.0是cu100， CUDA 9.0是cu90。</p>
+<p>如果太慢了建议使用交大的镜像</p>
+<pre class="hljs"><code><div>pip install -i https://mirror.sjtu.edu.cn/pypi/web/simple mxnet-cu115
+</div></code></pre>
+<p>如果机器没有NVIDIA GPU或CUDA，可以按如下方式MXNet的CPU版本：</p>
+<pre class="hljs"><code><div>pip install mxnet==1.7.0.post1
+</div></code></pre>
+<p>安装d2l包</p>
+<pre class="hljs"><code><div>pip install d2l
+</div></code></pre>
+<h2 id="%E5%AE%89%E8%A3%85pytorch">安装pytorch</h2>
+<p>在以下网站获取适合版本torch的安装指令</p>
+<p><a href="https://pytorch.org/get-started/locally/">pytorch</a></p>
+<p>助教使用的</p>
+<pre class="hljs"><code><div>pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu115
+</div></code></pre>
+<h2 id="%E8%8B%A5%E8%A6%81%E9%80%80%E5%87%BA%E7%8E%AF%E5%A2%83">若要退出环境</h2>
+<pre class="hljs"><code><div>conda deactivate
+</div></code></pre>
+<p>下次再使用时，请再执行</p>
+<pre class="hljs"><code><div>conda activate d2l
+</div></code></pre>
+<h2 id="%E8%8E%B7%E5%8F%96%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81">获取示例代码</h2>
+<p>在<a href="https://zh.d2l.ai">动手学习深度学习</a>网站下载jupyter文件压缩包</p>
+<p>如图所示</p>
+<p><img src="photo/download.png" alt=""></p>
+<p>将其解压到你认为合适的工作目录</p>
+<h2 id="%E5%90%AF%E5%8A%A8jupyter">启动jupyter</h2>
+<pre class="hljs"><code><div>jupyter notebook
+</div></code></pre>
+<p>会打开一个网页地址是<a href="http://localhost:8888/">localhost:8888</a></p>
+<p>如图所示，会要求你输入token</p>
+<p><img src="photo/needtoken.png" alt=""></p>
+<p>token 在命令行中找到</p>
+<p><img src="photo/token.png" alt=""></p>
+<p>会显示一个网址 token=...... token为<code>=</code>号后面的内容</p>
+<p>将token复制到网页</p>
+<p>你就能看到当前目录</p>
+<p>然后选择某一个<code>.ipynb</code>文件打开，就能看到类似如下界面</p>
+<p><img src="photo/run.png" alt=""></p>
+<p>点击<code>run/三角形图标</code>即可按照示例顺序运行代码</p>
+<p>若要关闭 在命令行<code>ctrl+c</code>再按提示输入<code>y</code>即可</p>
+<p>其中 部分代码存在前置依赖，即书本靠前章节创建了一些函数等，后面的章节直接使用了，若未运行过之前章节则会遇到错误</p>
+<p>故需要按照书本顺序将前置的代码运行一遍</p>
+<h2 id="%E6%8E%A8%E8%8D%90%E5%86%85%E5%AE%B9">推荐内容：</h2>
+<p>后面注有文件路径的为可在<code>jupyter</code>运行的内容, 未标注的为推荐阅读内容</p>
+<ul>
+<li><a href="https://zh.d2l.ai/chapter_linear-networks/linear-regression.html">线性神经网络</a>
+<ul>
+<li><a href="https://zh.d2l.ai/chapter_linear-networks/linear-regression-concise.html">线性回归的简洁实现</a>(对应路径pytorch/chapter_linear-networks/linear-regression-concise.ipynb)</li>
+<li><a href="https://zh.d2l.ai/chapter_linear-networks/softmax-regression-scratch.html">softmax回归</a> (运行<code>softmax-regression-concise</code>需要先运行过<code>softmax-regression-scratch</code>)</li>
+</ul>
+</li>
+<li><a href="https://zh.d2l.ai/chapter_multilayer-perceptrons/mlp.html">多层感知机</a>
+<ul>
+<li><a href="https://zh.d2l.ai/chapter_multilayer-perceptrons/mlp-scratch.html">多层感知机的从零开始实现</a>(对应路径为pytorch/chapter_multilayer-perceptrons/mlp-scratch.ipynb)</li>
+<li><a href="https://zh.d2l.ai/chapter_multilayer-perceptrons/underfit-overfit.html">模型选择、欠拟合和过拟合</a></li>
+<li><a href="https://zh.d2l.ai/chapter_multilayer-perceptrons/backprop.html">前向传播、反向传播和计算图</a></li>
+</ul>
+</li>
+<li><a href="https://zh.d2l.ai/chapter_convolutional-neural-networks/lenet.html#id2">LeNet数字识别</a>(对应路径pytorch/chapter_convolutional-neural-networks/lenet.ipynb)</li>
+</ul>
+
+</body>
+</html>
