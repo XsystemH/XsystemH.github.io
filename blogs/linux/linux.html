@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>linux.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h3 id="%E4%B8%80linux-%E5%9F%BA%E7%A1%80">一、Linux 基础</h3>
+<ol>
+<li><strong>系统特点</strong></li>
+</ol>
+<ul>
+<li>一切皆文件（设备/进程都以文件形式存在）</li>
+<li>目录结构：<code>/</code>为根目录，<code>/home</code>用户目录，<code>/etc</code>配置文件，<code>/bin</code>基础命令</li>
+</ul>
+<ol>
+<li><strong>常用命令</strong></li>
+</ol>
+<pre class="hljs"><code><div>ls -l          <span class="hljs-comment"># 查看文件详细信息</span>
+<span class="hljs-built_in">cd</span> ~/project   <span class="hljs-comment"># 进入用户目录下的project文件夹</span>
+<span class="hljs-built_in">pwd</span>            <span class="hljs-comment"># 显示当前路径</span>
+cp a.txt b.txt <span class="hljs-comment"># 复制文件</span>
+rm -r dir      <span class="hljs-comment"># 递归删除目录</span>
+chmod 755 script.sh  <span class="hljs-comment"># 修改文件权限</span>
+</div></code></pre>
+<ol>
+<li><strong>文本操作三剑客</strong></li>
+</ol>
+<pre class="hljs"><code><div>grep <span class="hljs-string">"error"</span> log.txt        <span class="hljs-comment"># 搜索包含error的行</span>
+awk <span class="hljs-string">'{print $1}'</span> data.txt  <span class="hljs-comment"># 提取第一列数据</span>
+sed <span class="hljs-string">'s/foo/bar/g'</span> file.txt <span class="hljs-comment"># 全局替换文本</span>
+</div></code></pre>
+<hr>
+<h3 id="%E4%BA%8Cshell-%E7%94%9F%E5%AD%98%E5%B7%A5%E5%85%B7">二、Shell 生存工具</h3>
+<ol>
+<li><strong>进程管理</strong></li>
+</ol>
+<pre class="hljs"><code><div>top               <span class="hljs-comment"># 动态监视进程（按q退出）</span>
+ps aux | grep python  <span class="hljs-comment"># 查看所有python进程</span>
+<span class="hljs-built_in">kill</span> -9 1234      <span class="hljs-comment"># 强制结束PID为1234的进程</span>
+</div></code></pre>
+<ol start="2">
+<li><strong>网络工具</strong></li>
+</ol>
+<pre class="hljs"><code><div>ping google.com
+netstat -tuln     <span class="hljs-comment"># 查看监听中的端口</span>
+curl -O http://example.com/file.zip  <span class="hljs-comment"># 下载文件</span>
+</div></code></pre>
+<ol start="3">
+<li><strong>效率工具</strong></li>
+</ol>
+<pre class="hljs"><code><div>vim file.txt       <span class="hljs-comment"># 文本编辑器（按i进入编辑，ESC后:wq保存退出）</span>
+tar -xzvf archive.tar.gz  <span class="hljs-comment"># 解压压缩包</span>
+find / -name <span class="hljs-string">"*.log"</span> 2&gt;/dev/null  <span class="hljs-comment"># 全盘搜索日志文件</span>
+</div></code></pre>
+<hr>
+<h3 id="%E4%B8%89git-%E4%B8%89%E4%BB%B6%E5%A5%97%E5%AE%9E%E6%88%98">三、Git 三件套实战</h3>
+<ol>
+<li><strong>基础工作流</strong></li>
+</ol>
+<pre class="hljs"><code><div>git init                      <span class="hljs-comment"># 初始化仓库</span>
+git add .                     <span class="hljs-comment"># 添加所有修改到暂存区</span>
+git commit -m <span class="hljs-string">"fix: 修复登录bug"</span>  <span class="hljs-comment"># 提交变更（推荐使用语义化commit）</span>
+git push origin main          <span class="hljs-comment"># 推送到远程main分支</span>
+</div></code></pre>
+<ol start="2">
+<li><strong>实用技巧</strong></li>
+</ol>
+<pre class="hljs"><code><div>git status                    <span class="hljs-comment"># 查看当前状态</span>
+git <span class="hljs-built_in">log</span> --oneline             <span class="hljs-comment"># 查看简洁版提交历史</span>
+git remote add origin git@github.com:user/repo.git  <span class="hljs-comment"># 关联远程仓库</span>
+</div></code></pre>
+<hr>
+<h3 id="%E5%9B%9Btmux-%E5%90%8E%E5%8F%B0%E8%AE%AD%E7%BB%83%E7%A5%9E%E5%99%A8">四、tmux 后台训练神器</h3>
+<ol>
+<li><strong>会话管理</strong></li>
+</ol>
+<pre class="hljs"><code><div>tmux new -s train_session  <span class="hljs-comment"># 创建名为train_session的新会话</span>
+Ctrl+b d                   <span class="hljs-comment"># 分离当前会话（后台保持运行）</span>
+tmux ls                    <span class="hljs-comment"># 查看所有会话</span>
+tmux attach -t train_session  <span class="hljs-comment"># 重新连接会话</span>
+</div></code></pre>
+<ol start="2">
+<li><strong>窗口操作</strong></li>
+</ol>
+<pre class="hljs"><code><div>Ctrl+b c       <span class="hljs-comment"># 新建窗口</span>
+Ctrl+b 数字键   <span class="hljs-comment"># 切换窗口</span>
+Ctrl+b <span class="hljs-string">"       # 水平分割窗格
+Ctrl+b %       # 垂直分割窗格
+</span></div></code></pre>
+<hr>
+<h3 id="%E4%BA%94ssh-%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5">五、SSH 远程连接</h3>
+<ol>
+<li><strong>基础连接</strong></li>
+</ol>
+<pre class="hljs"><code><div>ssh username@192.168.1.100 -p 22  <span class="hljs-comment"># 标准连接方式</span>
+scp file.txt user@host:/remote/path  <span class="hljs-comment"># 传输文件到远程</span>
+</div></code></pre>
+<ol start="2">
+<li><strong>密钥认证（免密登录）</strong></li>
+</ol>
+<pre class="hljs"><code><div>ssh-keygen -t rsa                 <span class="hljs-comment"># 生成密钥对（默认存~/.ssh/）</span>
+ssh-copy-id -i ~/.ssh/id_rsa.pub user@host  <span class="hljs-comment"># 上传公钥到服务器</span>
+</div></code></pre>
+<ol start="3">
+<li><strong>保持连接</strong></li>
+</ol>
+<pre class="hljs"><code><div><span class="hljs-comment"># ~/.ssh/config 配置示例</span>
+Host myserver
+    HostName 192.168.1.100
+    User user
+    Port 22
+    ServerAliveInterval 60  <span class="hljs-comment"># 每60秒发送心跳包</span>
+</div></code></pre>
+<hr>
+<h3 id="%E5%85%AD%E7%BB%84%E5%90%88%E4%BD%BF%E7%94%A8%E7%A4%BA%E4%BE%8B%E5%9C%BA%E6%99%AF">六、组合使用示例场景</h3>
+<pre class="hljs"><code><div><span class="hljs-comment"># 通过SSH连接服务器 -&gt; 启动tmux -&gt; 运行训练脚本</span>
+ssh ml-server
+tmux new -s training
+python train.py --batch-size 64
+<span class="hljs-comment"># 按Ctrl+b d断开 -&gt; 关闭本地终端，训练持续进行</span>
+
+<span class="hljs-comment"># 次日重新连接查看进度</span>
+ssh ml-server
+tmux attach -t training
+</div></code></pre>
+<hr>
+<p>遇到了未知的问题先<code>man</code>一下指令</p>
+
+</body>
+</html>
