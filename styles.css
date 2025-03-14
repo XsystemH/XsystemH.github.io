@@ -34,7 +34,7 @@ nav a.active {
 
 main {
   display: flex;
-  padding: 20px;
+  padding: 20px 15%;
 }
 
 aside {
