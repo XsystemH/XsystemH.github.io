@@ -321,7 +321,7 @@ pre code {
 
  body {
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
-	padding: 0 12px;
+	padding: 0 25%;
 }
 
 pre {
@@ -424,7 +424,7 @@ Answer(from below parts): generate the action for agents
 A: A function to get x_k from x_0 with \varepsilon?
 </div></code></pre>
 <h3 id="b-teleoperation-system">B. Teleoperation System</h3>
-<p><img src="img/TeleSys.jpg" alt=""></p>
+<p><img src="/img/TeleSys.jpg" alt=""></p>
 <p>We can get the human collected demonstration \({(s_i,a_i)}^T_{i=0}\), \(s \in \mathbb{R}^n\) is the robot state.</p>
 <pre class="hljs"><code><div>Q: What state exactly?
 </div></code></pre>
@@ -439,8 +439,43 @@ A: A function to get x_k from x_0 with \varepsilon?
 <h3 id="d-integrating-data-collection-and-manipulation-learning">D. Integrating Data Collection and Manipulation Learning</h3>
 <pre class="hljs"><code><div>Q: May I see the code?
 </div></code></pre>
-<h2 id="thinking">Thinking</h2>
-<p>To be continued... (25/3/18 2:21 a.m. 😴)</p>
+<h2 id="experiments">Experiments</h2>
+<h3 id="a-tasks">A. Tasks</h3>
+<p>6</p>
+<pre class="hljs"><code><div>Q: What is in D? Is there only one movement for a perticular task? i.e. did we trained 6 agent? Or just one for all the tasks.
+</div></code></pre>
+<h3 id="b-efficiency-of-data-collection">B. Efficiency of Data Collection</h3>
+<p>&quot;collect as much data as possible within three minutes&quot;</p>
+<pre class="hljs"><code><div>Q: Is this definition rigorous enough?
+</div></code></pre>
+<p><strong>Evaluate</strong>:</p>
+<ol>
+<li><strong>Success Rate</strong>: How to tell?</li>
+<li><strong>Horizon Length</strong>: Steps per Sample.</li>
+<li><strong>Collection Speed</strong>: Samples per Hour.</li>
+</ol>
+<h3 id="c-quantitative-evaluation">C. Quantitative Evaluation</h3>
+<p>For about half of my reading time, I was continuesly wondering about the meaning of training such a model as we can make the robot finish the task with our training data only. From Fig.4, I finally realized that the control process is in real time which means, after training, the human operator could be abstract, and robot will act base on the abstract instructions. This would save much time.
+<code>Is this understanding right?</code></p>
+<p><img src="img/fig4.png" alt=""></p>
+<p>But here comes another question, in III-B, we have \(a^s=\gamma a^h + (1-\gamma)a^r\).</p>
+<pre class="hljs"><code><div>Q1: Is this a simple weighted mean of h and r? If so, is this weighted average the average on the motion path coordinates? Intuitively imagine, does this seem unrealistic? Or is this just an abstract expression?
+
+Q2(If 6 tasks are trained together): When \gamma=1, what will it do? Is there an input of environment(which I didn't find)?
+
+Q3(If 6 tasks are not trained together): What will happen if trained together?
+</div></code></pre>
+<p>E. Real World Experiment</p>
+<h2 id="appendix">Appendix</h2>
+<h3 id="i-implementation-details">I. IMPLEMENTATION DETAILS</h3>
+<h4 id="c-diffusion-model-based-assistive-agent">C. Diffusion-Model-Based Assistive Agent</h4>
+<pre class="hljs"><code><div>MLP + Diffusion, How are they connected?
+</div></code></pre>
+<h3 id="ii-experiment-setups">II. EXPERIMENT SETUPS</h3>
+<h4 id="c-real-world-experiment">C. Real World Experiment</h4>
+<p>Our input has changed from the original hand states and object states to the position and orientation of the robot arm end effector, as well as images from the first-person and third-person perspectives.</p>
+<pre class="hljs"><code><div>I didn't find where to input these things.
+</div></code></pre>
 
 </body>
 </html>

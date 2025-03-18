@@ -85,6 +85,64 @@ A little bit confused about H and D.
 Q: May I see the code?
 ```
 
-## Thinking
+## Experiments
 
-To be continued... (25/3/18 2:21 a.m. 😴)
+### A. Tasks
+
+6
+
+```
+Q: What is in D? Is there only one movement for a perticular task? i.e. did we trained 6 agent? Or just one for all the tasks.
+```
+
+### B. Efficiency of Data Collection
+
+"collect as much data as possible within three minutes"
+
+```
+Q: Is this definition rigorous enough?
+```
+
+**Evaluate**:
+  1. **Success Rate**: How to tell?
+  2. **Horizon Length**: Steps per Sample.
+  3. **Collection Speed**: Samples per Hour.
+
+### C. Quantitative Evaluation
+
+For about half of my reading time, I was continuesly wondering about the meaning of training such a model as we can make the robot finish the task with our training data only. From Fig.4, I finally realized that the control process is in real time which means, after training, the human operator could be abstract, and robot will act base on the abstract instructions. This would save much time.
+`Is this understanding right?`
+
+![](img/fig4.png)
+
+But here comes another question, in III-B, we have $a^s=\gamma a^h + (1-\gamma)a^r$.
+
+```
+Q1: Is this a simple weighted mean of h and r? If so, is this weighted average the average on the motion path coordinates? Intuitively imagine, does this seem unrealistic? Or is this just an abstract expression?
+
+Q2(If 6 tasks are trained together): When \gamma=1, what will it do? Is there an input of environment(which I didn't find)?
+
+Q3(If 6 tasks are not trained together): What will happen if trained together?
+```
+
+E. Real World Experiment
+
+## Appendix
+
+### I. IMPLEMENTATION DETAILS
+
+#### C. Diffusion-Model-Based Assistive Agent
+
+```
+MLP + Diffusion, How are they connected?
+```
+
+### II. EXPERIMENT SETUPS
+
+#### C. Real World Experiment
+
+Our input has changed from the original hand states and object states to the position and orientation of the robot arm end effector, as well as images from the first-person and third-person perspectives.
+
+```
+I didn't find where to input these things.
+```
