@@ -47,10 +47,11 @@ aside {
 aside ul {
   list-style-type: none;
   padding: 0;
+  position: fixed;
 }
 
 aside ul li {
-  margin-bottom: 10px;
+  margin-bottom: 30px;
 }
 
 aside ul li a {
