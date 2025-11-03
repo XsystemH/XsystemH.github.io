@@ -1,0 +1,807 @@
+<head>
+<title>PiRobocasa.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script>
+    // 配置MathJax
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)']],
+            processEscapes: true
+        },
+        options: {
+            ignoreHtmlClass: '.*',
+            processHtmlClass: 'mathjax'
+        }
+    };
+</script>
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 25%;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="pi0--pi05-on-robocasa">Pi0 &amp; Pi0.5 On Robocasa</h1>
+<div style="text-align: center;">
+<video src="tasks.mp4" width="50%" controls></video>
+</div>
+<h2 id="infrastructure">Infrastructure</h2>
+<h3 id="robocasa-dataset-to-lerobot-dataset-converter">Robocasa Dataset to Lerobot Dataset Converter</h3>
+<p>HDF5格式的Robocasa数据集需要转换为Lerobot数据集格式以供Pi0和Pi0.5模型使用。</p>
+<h3 id="pi0--pi05-inference-on-robocasa">Pi0 &amp; Pi0.5 Inference on Robocasa</h3>
+<p>在Openpi仓库的基础上，我们加入了<code>src/policies/robocasa_policy.py</code>用于适配robocasa环境，构建了<code>/examples/robocasa</code>的推理环境。</p>
+<h2 id="robocasa%E7%BB%93%E6%9E%9C">Robocasa结果</h2>
+<p>针对robocasa数据集，在dp、pi0、pi0.5三个模型上进行微调。</p>
+<h3 id="%E5%9F%BA%E7%A1%80%E5%BE%AE%E8%B0%83%E7%BB%93%E6%9E%9C%E6%AF%94%E5%AF%B9">基础微调结果比对</h3>
+<p>在模型微调实验中，分别设置了30个、100个以及300个<code>demos</code>作为训练样本以探索数据规模对模型性能的影响。各模型所使用的训练轮数设置如下：<code>dp</code>模型训练80k轮，<code>pi0</code>模型在100个<code>demos</code>条件下训练300k轮，在300个<code>demos</code>条件下训练150k轮，<code>pi0.5</code>模型在300个<code>demos</code>条件下训练60k轮。在模型训练过程中，以监测到训练损失稳定为结束训练的依据。</p>
+<p>评估过程中，我们发现对于<strong>OpenDoubleDoors</strong>这个任务，模型的准确率为0%，其主要原因并非模型无法完成任务，而是测试的时间范围不足以使模拟器判定任务完成。因此，将评估过程中的<code>action horizon</code>从默认值调整为1000以扩大任务完成判定时间范围。</p>
+<p>为了确保公平性，对100demos和300demos的<code>dp</code>在评估时进行了action horizon的调整，结果显示，<code>dp</code>模型在使用100和300个<code>demos</code>的微调实验中的成功率与之前未调整<code>action horizon</code>的实验相比并未显著提升。</p>
+<table>
+<thead>
+<tr>
+<th>Tasks</th>
+<th>dp<br/>(30demos)<br/>horizon:600</th>
+<th>dp<br/>(100demos)<br/>horizon:1000</th>
+<th>dp<br/>(300demos)<br/>horizon:1000</th>
+<th>pi0<br/>(30demos)<br/>horizon:600</th>
+<th>pi0<br/>(100demos)<br/>horizon:600</th>
+<th>pi0<br/>(300demos)<br/>horizon:600</th>
+<th>pi05<br/>(300demos)<br/>horizon:1000</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Close Double Door</td>
+<td>18</td>
+<td>42</td>
+<td>46</td>
+<td>58.42%</td>
+<td>88.00%</td>
+<td>62.00%</td>
+<td>78.18%</td>
+</tr>
+<tr>
+<td>Close Drawer</td>
+<td>84</td>
+<td>96</td>
+<td>88</td>
+<td>64.36%</td>
+<td>68.80%</td>
+<td>67.00%</td>
+<td>100.00%</td>
+</tr>
+<tr>
+<td>Close Single Door</td>
+<td>48</td>
+<td>68</td>
+<td>78</td>
+<td>85.15%</td>
+<td>97.60%</td>
+<td>86.00%</td>
+<td>100.00%</td>
+</tr>
+<tr>
+<td>Coffee Press Button</td>
+<td>38</td>
+<td>38</td>
+<td>24</td>
+<td>70.30%</td>
+<td>72.80%</td>
+<td>65.00%</td>
+<td>76.36%</td>
+</tr>
+<tr>
+<td>Coffee Serve Mug</td>
+<td>8</td>
+<td>14</td>
+<td>14</td>
+<td>45.54%</td>
+<td>66.40%</td>
+<td>48.00%</td>
+<td>69.09%</td>
+</tr>
+<tr>
+<td>Coffee Setup Mug</td>
+<td>0</td>
+<td>0</td>
+<td>2</td>
+<td>13.86%</td>
+<td>17.60%</td>
+<td>20.00%</td>
+<td>29.09%</td>
+</tr>
+<tr>
+<td>Open Double Door</td>
+<td>8</td>
+<td>4</td>
+<td>6</td>
+<td>0.00%</td>
+<td>0.80%</td>
+<td>0.00%</td>
+<td>82.00%</td>
+</tr>
+<tr>
+<td>Open Drawer</td>
+<td>12</td>
+<td>28</td>
+<td>32</td>
+<td>7.89%</td>
+<td>35.20%</td>
+<td>12.00%</td>
+<td>65.45%</td>
+</tr>
+<tr>
+<td>Open Single Door</td>
+<td>24</td>
+<td>16</td>
+<td>44</td>
+<td>87.13%</td>
+<td>80.80%</td>
+<td>77.00%</td>
+<td>92.73%</td>
+</tr>
+<tr>
+<td>PnP from Cab to Counter</td>
+<td>4</td>
+<td>8</td>
+<td>10</td>
+<td>12.87%</td>
+<td>10.40%</td>
+<td>12.00%</td>
+<td>43.64%</td>
+</tr>
+<tr>
+<td>PnP from Counter to Cab</td>
+<td>6</td>
+<td>4</td>
+<td>10</td>
+<td>20.79%</td>
+<td>26.40%</td>
+<td>34.00%</td>
+<td>45.45%</td>
+</tr>
+<tr>
+<td>PnP from Counter to Microwave</td>
+<td>0</td>
+<td>2</td>
+<td>4</td>
+<td>15.84%</td>
+<td>25.60%</td>
+<td>19.00%</td>
+<td>29.09%</td>
+</tr>
+<tr>
+<td>PnP from Counter to Sink</td>
+<td>2</td>
+<td>2</td>
+<td>8</td>
+<td>12.87%</td>
+<td>30.40%</td>
+<td>37.00%</td>
+<td>60.00%</td>
+</tr>
+<tr>
+<td>PnP from Counter to Stove</td>
+<td>0</td>
+<td>0</td>
+<td>2</td>
+<td>9.90%</td>
+<td>12.00%</td>
+<td>23.00%</td>
+<td>49.09%</td>
+</tr>
+<tr>
+<td>PnP from Microwave to Counter</td>
+<td>0</td>
+<td>2</td>
+<td>4</td>
+<td>6.93%</td>
+<td>12.00%</td>
+<td>17.00%</td>
+<td>29.09%</td>
+</tr>
+<tr>
+<td>PnP from Sink to Counter</td>
+<td>2</td>
+<td>4</td>
+<td>4</td>
+<td>19.80%</td>
+<td>16.80%</td>
+<td>26.00%</td>
+<td>49.09%</td>
+</tr>
+<tr>
+<td>PnP from Stove to Counter</td>
+<td>4</td>
+<td>4</td>
+<td>8</td>
+<td>19.80%</td>
+<td>20.00%</td>
+<td>31.00%</td>
+<td>45.45%</td>
+</tr>
+<tr>
+<td>Turn Off Microwave</td>
+<td>48</td>
+<td>68</td>
+<td>34</td>
+<td>38.61%</td>
+<td>88.80%</td>
+<td>71.00%</td>
+<td>89.09%</td>
+</tr>
+<tr>
+<td>Turn Off Sink Faucet</td>
+<td>62</td>
+<td>68</td>
+<td>72</td>
+<td>64.36%</td>
+<td>74.40%</td>
+<td>81.00%</td>
+<td>92.73%</td>
+</tr>
+<tr>
+<td>Turn Off Stove</td>
+<td>6</td>
+<td>12</td>
+<td>15</td>
+<td>9.90%</td>
+<td>20.80%</td>
+<td>20.00%</td>
+<td>34.55%</td>
+</tr>
+<tr>
+<td>Turn On Microwave</td>
+<td>30</td>
+<td>26</td>
+<td>35</td>
+<td>62.38%</td>
+<td>53.60%</td>
+<td>36.00%</td>
+<td>58.18%</td>
+</tr>
+<tr>
+<td>Turn On Sink Faucet</td>
+<td>26</td>
+<td>38</td>
+<td>52</td>
+<td>74.26%</td>
+<td>71.20%</td>
+<td>69.00%</td>
+<td>83.64%</td>
+</tr>
+<tr>
+<td>Turn On Stove</td>
+<td>10</td>
+<td>28</td>
+<td>27</td>
+<td>45.54%</td>
+<td>46.40%</td>
+<td>41.00%</td>
+<td>76.36%</td>
+</tr>
+<tr>
+<td>Turn Sink Spout</td>
+<td>28</td>
+<td>40</td>
+<td>46</td>
+<td>82.18%</td>
+<td>90.40%</td>
+<td>93.00%</td>
+<td>96.36%</td>
+</tr>
+<tr>
+<td><em>RoboCasa Average</em></td>
+<td>19.5</td>
+<td>25.5</td>
+<td>27.70833333</td>
+<td>38.695</td>
+<td>46.9666667</td>
+<td>43.625</td>
+<td>65.61</td>
+</tr>
+</tbody>
+</table>
+<h3 id="%E6%95%B0%E6%8D%AE%E9%9B%86%E8%B0%83%E6%95%B4%E8%AE%AD%E7%BB%83">数据集调整训练</h3>
+<h4 id="%E6%96%B9%E6%B3%95">方法</h4>
+<p>基于以上微调实验结果，针对模型性能不足的问题采用了数据集调整的方法以进行优化训练。在调整数据集的过程中，根据RoboCasa数据集中的 <strong>原子任务（Atomic Tasks）</strong> 特性，将任务动作归类为七大类混合任务，包括：<strong>Pick and Place Tasks</strong>、<strong>Door Tasks</strong>、<strong>Drawer Tasks</strong>、<strong>Turning Lever Tasks</strong>、<strong>Twisting Knob Tasks</strong>、<strong>Insert Tasks</strong>以及<strong>Pressing Button Tasks</strong>。</p>
+<p>在构造上述混合任务的数据集时，采用加权的方式。例如在pi05模型的300demos训练中，<strong>Pressing Button Tasks</strong>的任务数据集来源于：Coffee Press Button、Turn On Microwave、Turn Off Microwave各300demos，以及其他数据集各50demos，以尽量避免训练过程中动作遗忘的问题。</p>
+<p>调整后的混合任务数据集采用同样的<code>norm_state.json</code>，以保证正确归一化。</p>
+<p>在训练时，依次对每个混合任务训10k epochs，旨在期望能够强化模型学习到的任务相关的动作（例如插入、扭动杠杆等），随后对全任务集合进行整合训练。</p>
+<h4 id="%E7%BB%93%E6%9E%9C">结果</h4>
+<p>针对300demos的数据集，pi05在基础训练和加权训练下的结果。</p>
+<table>
+<thead>
+<tr>
+<th>Tasks</th>
+<th>base</th>
+<th>weighted</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Close Double Door</td>
+<td>78.18%</td>
+<td>75</td>
+</tr>
+<tr>
+<td>Close Drawer</td>
+<td>100.00%</td>
+<td>100</td>
+</tr>
+<tr>
+<td>Close Single Door</td>
+<td>100.00%</td>
+<td>92</td>
+</tr>
+<tr>
+<td>Coffee Press Button</td>
+<td>76.36%</td>
+<td>80</td>
+</tr>
+<tr>
+<td>Coffee Serve Mug</td>
+<td>69.09%</td>
+<td>78</td>
+</tr>
+<tr>
+<td>Coffee Setup Mug</td>
+<td>29.09%</td>
+<td>34</td>
+</tr>
+<tr>
+<td>Open Double Door</td>
+<td>82.00%</td>
+<td>82</td>
+</tr>
+<tr>
+<td>Open Drawer</td>
+<td>65.45%</td>
+<td>66</td>
+</tr>
+<tr>
+<td>Open Single Door</td>
+<td>92.73%</td>
+<td>92</td>
+</tr>
+<tr>
+<td>PnP from Cab to Counter</td>
+<td>43.64%</td>
+<td>48</td>
+</tr>
+<tr>
+<td>PnP from Counter to Cab</td>
+<td>45.45%</td>
+<td>68</td>
+</tr>
+<tr>
+<td>PnP from Counter to Microwave</td>
+<td>29.09%</td>
+<td>25</td>
+</tr>
+<tr>
+<td>PnP from Counter to Sink</td>
+<td>60.00%</td>
+<td>72</td>
+</tr>
+<tr>
+<td>PnP from Counter to Stove</td>
+<td>49.09%</td>
+<td>60</td>
+</tr>
+<tr>
+<td>PnP from Microwave to Counter</td>
+<td>29.09%</td>
+<td>22</td>
+</tr>
+<tr>
+<td>PnP from Sink to Counter</td>
+<td>49.09%</td>
+<td>44</td>
+</tr>
+<tr>
+<td>PnP from Stove to Counter</td>
+<td>45.45%</td>
+<td>66</td>
+</tr>
+<tr>
+<td>Turn Off Microwave</td>
+<td>89.09%</td>
+<td>98</td>
+</tr>
+<tr>
+<td>Turn Off Sink Faucet</td>
+<td>92.73%</td>
+<td>84</td>
+</tr>
+<tr>
+<td>Turn Off Stove</td>
+<td>34.55%</td>
+<td>46</td>
+</tr>
+<tr>
+<td>Turn On Microwave</td>
+<td>58.18%</td>
+<td>80</td>
+</tr>
+<tr>
+<td>Turn On Sink Faucet</td>
+<td>83.64%</td>
+<td>88</td>
+</tr>
+<tr>
+<td>Turn On Stove</td>
+<td>76.36%</td>
+<td>84</td>
+</tr>
+<tr>
+<td>Turn Sink Spout</td>
+<td>96.36%</td>
+<td>92</td>
+</tr>
+<tr>
+<td><em>RoboCasa Average</em></td>
+<td>65.61%</td>
+<td>69.83333333</td>
+</tr>
+</tbody>
+</table>
+
+</body>
+</html>
