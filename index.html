@@ -20,21 +20,21 @@
         </nav>
     </header>
 
-    <!-- Main Content Area -->
-    <div id="jumpButton">
-        <p>
-            Self
-            Introduction
-            Here
-        </p>
-    </div>
-    <!-- <div> <img src="img/Ayanami_Rei.png" alt="Ayanami_Rei"> </div> -->
-    
+    <div class="welcome" id="welcome"><img src="img/Ayanami_Rei.png" width="2559" height="1439" alt="Rei Ayanami — Hi, welcome to my website"></div>
+    <nav class="dial" aria-label="Section index" hidden>
+        <button class="dial-handle" aria-controls="dial-links" aria-expanded="false" aria-label="Section index">‹</button>
+        <div id="dial-links" hidden>
+            <a href="#welcome">Welcome</a>
+            <a href="#about">About</a>
+            <a href="#research">Research</a>
+            <a href="#experience">Experience</a>
+            <a href="#personal">Interests</a>
+            <a href="#photos">Photos</a>
+        </div>
+    </nav>
     <main>
-        <div id="target"></div>
-        <a name="main"></a>
         <section>
-            <h1>Chaoyi Huang (PiaoZY)</h1>
+            <h1 id="about">Chaoyi Huang (PiaoZY)</h1>
             <section>
                 <img src="img/self.jpg" alt="self" width=30% align="right">
                 <p>👋 Hi! I'm Chaoyi Huang (黄超逸), a fourth-year computer science undergraduate in the ACM Honors Class at <a href="https://en.sjtu.edu.cn/">Shanghai Jiao Tong University</a>, advised by Prof. Yong Yu. I expect to graduate in June 2027.</p>
@@ -42,14 +42,14 @@
                 <p>🌱 How can a robot tell which part of an unfamiliar tool to use? Once it starts acting, how can it tell whether the action worked? I study these questions through robot learning, simulation, and experiments on physical robots.</p>
                 <p>📫 <a href="mailto:xhsystem@sjtu.edu.cn">xhsystem@sjtu.edu.cn</a> · <a href="https://github.com/XsystemH">GitHub</a> · <a href="file/cv.pdf">Curriculum vitae (PDF)</a></p>
             </section>
-            <h2>Selected research</h2>
-            <section>
-                <h3>A<sup>2</sup>-VLA: Adapting Vision-Language-Action Policies to New Tools through Agentic Affordance Discovery</h3>
-                <p>Chenyuan Zhou*, <strong>Chaoyi Huang*</strong>, Zibo Wang*, Zhiyan Li, Yong-Lu Li.<br>*Equal contribution. Under review at CVPR 2027.</p>
-                <h3>From Pixel to Poses: Object-centric Tool Manipulation Learning from Human Demonstrations</h3>
-                <p>P2P-T learns tool poses from videos of people using tools. Those poses guide a robot as it learns the same manipulation skills. <a href="https://opendrivelab.com/P2P-T/">Project page</a> · <a href="https://arxiv.org/abs/2609.35375">Preprint</a></p>
-                <h3>ProjDevBench: Benchmarking AI Coding Agents on End-to-End Project Development</h3>
-                <p>ProjDevBench evaluates whether a coding agent can build a complete software project from a specification. <a href="https://arxiv.org/abs/2602.01655">Preprint</a></p>
+            <h2 id="research">Selected research</h2>
+            <section class="research-list">
+                <article class="research-row"><a href="img/research/a2.webp"><img src="img/research/a2.webp" alt="Early tool-affordance adaptation framework" loading="lazy"></a><div><h3>A<sup>2</sup>-VLA: Adapting Vision-Language-Action Policies to New Tools through Agentic Affordance Discovery</h3>
+                    <p>Chenyuan Zhou*, <strong>Chaoyi Huang*</strong>, Zibo Wang*, Zhiyan Li, Yong-Lu Li.<br>*Equal contribution. Under review at CVPR 2027.</p></div></article>
+                <article class="research-row"><a href="img/research/p2p.webp"><img src="img/research/p2p.webp" alt="P2P-T pipeline from human video to robot tool use" loading="lazy"></a><div><h3>From Pixel to Poses: Object-centric Tool Manipulation Learning from Human Demonstrations</h3>
+                    <p>P2P-T learns tool poses from videos of people using tools. Those poses guide a robot as it learns the same manipulation skills. <a href="https://opendrivelab.com/P2P-T/">Project page</a> · <a href="https://arxiv.org/abs/2609.35375">Preprint</a></p></div></article>
+                <article class="research-row"><a href="img/research/bench.webp"><img src="img/research/bench.webp" alt="ProjDevBench comparison of coding tasks" loading="lazy"></a><div><h3>ProjDevBench: Benchmarking AI Coding Agents on End-to-End Project Development</h3>
+                    <p>ProjDevBench evaluates whether a coding agent can build a complete software project from a specification. <a href="https://arxiv.org/abs/2602.01655">Preprint</a></p></div></article>
             </section>
             <section id="experience" aria-labelledby="experience-title">
                 <h2 id="experience-title">Experience</h2>
@@ -74,7 +74,7 @@
                     <img src="img/sjtu.png" alt="" width="68" height="68">
                 </article>
             </section>
-            <h2> More about me </h2>
+            <h2 id="personal"> More about me </h2>
             <section>
                 <p>
                     🏃‍ I'm a fan of many kinds of sports, like 🏀basketball, 🏸badminton, ⚾baseball, 🎾tennis, 🧗‍climbing, and 🤺swordplay. Maybe I'm not that professional, but I can get familiar to a new sport very quickly.
@@ -87,18 +87,18 @@
                 </p>
                 <p>
                     🧑‍🍳 I believe that I have a talent for cooking, and I'm working hard to extend recipes.
-                <p>
-                    📷 Love traveling all over the world, and catch the most splendid scenery. Here are some photos that I'm proud of:
                 </p>
-                <div>
-                    <img src="img/scenery/autumn.jpg" alt="Autumn" width=30%>
-                    <img src="img/scenery/desert.jpg" alt="Desert" width=30%>
-                    <img src="img/scenery/tai.jpg" alt="Sun rise on Mt.Tai" width=30%>
-                </div>
-                <div>
-                    <img src="img/scenery/Sapporo.jpg" alt="Sapporo" width=30%>
-                    <img src="img/scenery/Tokyo.jpg" alt="Tokyo" width=30%>
-                    <img src="img/scenery/shanghai2.jpg" alt="Shanghai" width=30%>
+                <h2 id="photos">Photography</h2>
+                <div class="photo-grid">
+                    <a href="img/scenery/cave-forest.jpg"><img src="img/scenery/cave-forest.jpg" alt="Sunlit forest framed by a cave mouth" loading="lazy"></a>
+                    <a href="img/scenery/cave-light.jpg"><img src="img/scenery/cave-light.jpg" alt="A lone light inside a cavern" loading="lazy"></a>
+                    <a href="img/scenery/mountain-lake.jpg"><img src="img/scenery/mountain-lake.jpg" alt="Snow-covered peaks across a lake" loading="lazy"></a>
+                    <a href="img/scenery/autumn.jpg"><img src="img/scenery/autumn.jpg" alt="Autumn" loading="lazy"></a>
+                    <a href="img/scenery/desert.jpg"><img src="img/scenery/desert.jpg" alt="Desert" loading="lazy"></a>
+                    <a href="img/scenery/tai.jpg"><img src="img/scenery/tai.jpg" alt="Sun rise on Mt.Tai" loading="lazy"></a>
+                    <a href="img/scenery/Sapporo.jpg"><img src="img/scenery/Sapporo.jpg" alt="Sapporo" loading="lazy"></a>
+                    <a href="img/scenery/Tokyo.jpg"><img src="img/scenery/Tokyo.jpg" alt="Tokyo" loading="lazy"></a>
+                    <a href="img/scenery/shanghai2.jpg"><img src="img/scenery/shanghai2.jpg" alt="Shanghai" loading="lazy"></a>
                 </div>
             </section>
         </section>     
