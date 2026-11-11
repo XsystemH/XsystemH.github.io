@@ -141,6 +141,24 @@ img {
   .appointment img { grid-column: 2; grid-row: 1 / span 2; height: 3rem; }
 }
 
+#about + section { display: flow-root; }
+.profile-portrait {
+  float: right;
+  display: block;
+  width: 30%;
+  height: auto;
+  margin: 0 0 .8rem 1.25rem;
+  border-radius: 14px;
+}
+@media (max-width: 600px) {
+  .profile-portrait {
+    float: none;
+    width: min(100%, 320px);
+    margin: 0 auto 1rem;
+    border-radius: 12px;
+  }
+}
+
 .welcome { background: #030d22; }
 .welcome img { display: block; width: 100%; height: min(56.23vw, 77vh); object-fit: contain; }
 .profile-page [id] { scroll-margin-top: 1rem; }
