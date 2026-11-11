@@ -21,9 +21,11 @@
     </header>
 
     <div class="welcome" id="welcome"><img src="img/Ayanami_Rei.png" width="2559" height="1439" alt="Rei Ayanami — Hi, welcome to my website"></div>
-    <nav class="dial" aria-label="Section index" hidden>
-        <button class="dial-handle" aria-controls="dial-links" aria-expanded="false" aria-label="Section index">‹</button>
-        <div id="dial-links" hidden>
+    <nav class="dial" aria-label="Section index">
+        <svg class="index-curve" aria-hidden="true" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <path d="M 1 0 Q 1 50 1 100" fill="none" stroke="currentColor" vector-effect="non-scaling-stroke"/>
+        </svg>
+        <div id="dial-links">
             <a href="#welcome">Welcome</a>
             <a href="#about">About</a>
             <a href="#research">Research</a>

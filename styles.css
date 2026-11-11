@@ -152,19 +152,53 @@ img {
 .photo-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .65rem; }
 .photo-grid img { display: block; width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 4px; }
 
-.dial { position: fixed; right: 0; top: 54%; z-index: 9; margin: 0; transform: translateY(-50%); font: 500 14px/1.2 system-ui,sans-serif; }
-.dial-handle { position: absolute; right: 0; top: -32px; width: 30px; height: 64px; border: 1px solid #ccc; border-right: 0; border-radius: 100% 0 0 100%; background: #fafafa; color: #555; cursor: pointer; font-size: 22px; z-index: 1; }
-#dial-links { width: 172px; height: 282px; border-radius: 100% 0 0 100% / 56% 0 0 56%; background: #f9f9f9; border: 1px solid #d4d4d4; border-right: none; box-shadow: -4px 4px 20px #0001; overflow: hidden; position: relative; touch-action: none; }
-.dial.open .dial-handle { top: calc(50% - 26px); height: 52px; width: 24px; background: white; }
-#dial-links a { margin: 0; position: absolute; top: 50%; left: 0; padding: 7px 10px; border-radius: 20px; font-size: 13px; text-decoration: none; color: #555; transform: translate(var(--x),calc(var(--y) - 50%)); transition: transform .18s ease, opacity .18s; }
-#dial-links a[data-selected] { color: #fff; background: #404040; }
-#dial-links a[aria-current]::before { content: '• '; }
-#dial-links a:focus-visible, .dial-handle:focus-visible { outline: 2px solid #444; outline-offset: -2px; }
+/* The line and its labels share a full-height quadratic curve. */
+.profile-page nav.dial {
+  --bend: 0;
+  --reach: clamp(42px, 6vw, 90px);
+  --inset: clamp(9px, 1vw, 18px);
+  position: fixed;
+  inset: 0 auto 0 0;
+  height: 100%;
+  height: 100dvh;
+  width: calc(var(--reach) + 6.5rem);
+  display: block;
+  margin: 0;
+  z-index: 9;
+  pointer-events: none;
+  color: white;
+  mix-blend-mode: difference;
+  font: 500 clamp(12px, 1vw, 15px)/1.2 system-ui, sans-serif;
+}
+.index-curve {
+  position: absolute;
+  inset: 0 auto 0 0;
+  height: 100%;
+  width: var(--reach);
+  opacity: calc(var(--bend) * .52);
+}
+#dial-links a {
+  position: absolute;
+  top: var(--position);
+  left: var(--inset);
+  margin: 0;
+  padding: .8em 0;
+  transform: translate(calc(var(--reach) * var(--offset, 0)), -50%);
+  color: inherit;
+  opacity: calc(.46 + .54 * var(--bend));
+  text-decoration: none;
+  pointer-events: auto;
+}
+#dial-links a[aria-current] { font-weight: 720; }
+#dial-links a:hover, #dial-links a:focus-visible {
+  text-decoration: underline;
+  text-underline-offset: .32em;
+}
+#dial-links a:focus-visible { outline: 1px solid currentColor; outline-offset: 3px; }
 @media(max-width:720px) {
-  .profile-page nav.dial { display: block; }
-  .profile-page nav.dial[hidden] { display: none; }
+  .profile-page nav.dial { --reach: 18px; --inset: 4px; font-size: 11px; }
+  .profile-page main { padding-left: 5.4rem; padding-right: .5rem; }
   .research-row { grid-template-columns: 1fr; gap: .9rem; }
   .research-row img { max-height: 200px; object-fit: contain; }
   .photo-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
 }
-@media(prefers-reduced-motion:reduce) { #dial-links a { transition: none; } }
