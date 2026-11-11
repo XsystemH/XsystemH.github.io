@@ -9,6 +9,15 @@ const line = dial.querySelector('path');
 const links = Array.from(dial.querySelectorAll('a'));
 const targets = links.map(link => document.querySelector(link.hash));
 const positions = links.map((_, i) => .08 + .84 * i / (links.length - 1));
+const wallpaper = document.getElementById('welcome');
+const inkStops = dial.querySelectorAll('#curve-ink stop');
+function updateIndexColors() {
+  const bounds = dial.getBoundingClientRect();
+  const edge = (wallpaper.getBoundingClientRect().bottom - bounds.top) / Math.max(1, bounds.height);
+  const offset = Math.max(0, Math.min(1, edge));
+  inkStops.forEach(stop => stop.setAttribute('offset', offset));
+  links.forEach((link, i) => link.classList.toggle('over-wallpaper', positions[i] < edge));
+}
 const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
 
 let bend = 0;
@@ -68,6 +77,7 @@ dial.addEventListener('focusout', event => {
 });
 
 function trackSection() {
+  updateIndexColors();
   current = 0;
   targets.forEach((target, i) => {
     if (target.getBoundingClientRect().top <= innerHeight * .32) current = i;
@@ -100,5 +110,7 @@ dial.addEventListener('pointerdown', event => {
 });
 dial.addEventListener('pointercancel', relax);
 window.addEventListener('scroll', trackSection, {passive:true});
+new ResizeObserver(updateIndexColors).observe(dial);
+new ResizeObserver(updateIndexColors).observe(wallpaper);
 trackSection();
 paint();

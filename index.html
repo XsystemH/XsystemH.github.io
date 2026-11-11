@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chaoyi Huang (PiaoZY)</title>
-    <link rel="stylesheet" href="styles.css?v=9ef460a275c5">
+    <link rel="stylesheet" href="styles.css?v=4d625ec228fd">
 </head>
 <body class="profile-page">
 
@@ -23,7 +23,13 @@
     <div class="welcome" id="welcome"><img src="img/Ayanami_Rei.png" width="2559" height="1439" alt="Rei Ayanami — Hi, welcome to my website"></div>
     <nav class="dial" aria-label="Section index">
         <svg class="index-curve" aria-hidden="true" viewBox="0 0 100 100" preserveAspectRatio="none">
-            <path d="M 1 0 Q 1 50 1 100" fill="none" stroke="currentColor" vector-effect="non-scaling-stroke"/>
+            <defs>
+                <linearGradient id="curve-ink" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="100">
+                    <stop stop-color="white"/>
+                    <stop stop-color="var(--nav-blue)"/>
+                </linearGradient>
+            </defs>
+            <path d="M 1 0 Q 1 50 1 100" fill="none" stroke="url(#curve-ink)" vector-effect="non-scaling-stroke"/>
         </svg>
         <div id="dial-links">
             <a href="#welcome">Welcome</a>
@@ -105,6 +111,6 @@
             </section>
         </section>     
     </main>
-    <script src="script.js?v=088812bb4a1a"></script>
+    <script src="script.js?v=8882861ce467"></script>
 </body>
 </html>

@@ -161,7 +161,8 @@ img {
 
 .welcome { background: #030d22; }
 .welcome img { display: block; width: 100%; height: min(56.23vw, 77vh); object-fit: contain; }
-.profile-page > header { position: sticky; top: 0; z-index: 10; }
+.profile-page { --nav-blue: #007bff; --nav-rule: 3px; }
+.profile-page > header { border-bottom: var(--nav-rule) solid var(--nav-blue); position: sticky; top: 0; z-index: 10; }
 .profile-page [id], .profile-page #experience { scroll-margin-top: calc(var(--bar-height, 96px) + 1rem); }
 .research-row { display: grid; grid-template-columns: minmax(150px, 30%) 1fr; align-items: center; gap: 1.5rem; padding: 1.2rem 0; }
 .research-row + .research-row { border-top: 1px solid #ddd; }
@@ -183,8 +184,7 @@ img {
   margin: 0;
   z-index: 9;
   pointer-events: none;
-  color: white;
-  mix-blend-mode: difference;
+  color: var(--nav-blue);
   font: 650 clamp(12px, 1vw, 15px)/1.2 system-ui, sans-serif;
 }
 .index-curve {
@@ -192,8 +192,8 @@ img {
   inset: 0 auto 0 0;
   height: 100%;
   width: var(--reach);
-  opacity: calc(var(--bend) * .78);
-  stroke-width: 3px;
+  opacity: var(--bend);
+  stroke-width: var(--nav-rule);
   overflow: visible;
 }
 #dial-links a {
@@ -208,6 +208,7 @@ img {
   text-decoration: none;
   pointer-events: auto;
 }
+#dial-links a.over-wallpaper { color: white; }
 #dial-links a[aria-current] { font-weight: 800; }
 #dial-links a:hover, #dial-links a:focus-visible {
   text-decoration: underline;
