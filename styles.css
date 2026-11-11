@@ -118,3 +118,39 @@ img {
 .pdf-link {
   float: right;
 }
+#experience {
+  margin: 2rem 0 0;
+  padding: 0;
+  box-shadow: none;
+  scroll-margin-top: 1rem;
+}
+
+#experience h2 { margin-bottom: 0; }
+
+.appointment {
+  display: grid;
+  grid-template-columns: 8.8rem minmax(0, 1fr) 4.25rem;
+  align-items: start;
+  gap: 1.4rem;
+  padding: 1.6rem 0;
+}
+
+.appointment + .appointment { border-top: 1px solid #e4e7eb; }
+.appointment h3 { margin: 0 0 .4rem; font-size: 1.2rem; }
+.appointment p { margin: .15rem 0; }
+.appointment a { color: inherit; text-underline-offset: .18em; }
+.appointment .appointment-date { color: #555d68; font-size: .92rem; }
+.appointment .research-topic { margin-top: .65rem; }
+.appointment img { width: 100%; height: 4.25rem; object-fit: contain; }
+
+@media (max-width: 720px) {
+  .profile-page main { padding: .75rem; }
+  .profile-page main section { margin-left: 0; padding: .9rem; }
+  .profile-page nav { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+  .profile-page nav a { margin: 0; }
+  .appointment { grid-template-columns: minmax(0, 1fr) 2.8rem; gap: .45rem .7rem; }
+  .appointment .appointment-date { grid-column: 1; }
+  .appointment div { grid-column: 1; }
+  .appointment img { grid-column: 2; grid-row: 1 / span 2; height: 3rem; }
+  .profile-page #jumpButton { display: none; }
+}
