@@ -185,7 +185,7 @@ img {
   pointer-events: none;
   color: white;
   mix-blend-mode: difference;
-  font: 500 clamp(12px, 1vw, 15px)/1.2 system-ui, sans-serif;
+  font: 650 clamp(12px, 1vw, 15px)/1.2 system-ui, sans-serif;
 }
 .index-curve {
   position: absolute;
@@ -193,7 +193,7 @@ img {
   height: 100%;
   width: var(--reach);
   opacity: calc(var(--bend) * .78);
-  stroke-width: 2.5px;
+  stroke-width: 3px;
   overflow: visible;
 }
 #dial-links a {
@@ -208,7 +208,7 @@ img {
   text-decoration: none;
   pointer-events: auto;
 }
-#dial-links a[aria-current] { font-weight: 720; }
+#dial-links a[aria-current] { font-weight: 800; }
 #dial-links a:hover, #dial-links a:focus-visible {
   text-decoration: underline;
   text-underline-offset: .32em;

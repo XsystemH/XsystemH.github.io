@@ -24,14 +24,18 @@ function paint() {
   peak = reducedMotion.matches ? targetPeak : peak + (targetPeak - peak) * .3;
   if (Math.abs(targetPeak - peak) < .001) peak = targetPeak;
   dial.style.setProperty('--bend', bend);
-  const x = 1 + 98 * bend;
   const y = peak * 100;
-  // Both quadratic segments meet with a vertical tangent at the pointer height.
-  line.setAttribute('d', `M 1 0 Q ${x} ${y / 2} ${x} ${y} Q ${x} ${(100 + y) / 2} 1 100`);
+  // Limit lateral travel near either endpoint so a short segment cannot form a hook.
+  const clearance = Math.min(peak, 1 - peak) * dial.clientHeight;
+  const reach = line.ownerSVGElement.getBoundingClientRect().width || 1;
+  const amplitude = .98 * bend * Math.tanh(clearance / (1.5 * reach));
+  const x = 1 + 100 * amplitude;
+  line.setAttribute('d', `M 1 0 C 1 ${y / 3} ${x} ${2 * y / 3} ${x} ${y}
+    C ${x} ${y + (100 - y) / 3} 1 ${y + 2 * (100 - y) / 3} 1 100`);
   links.forEach((link, i) => {
     const t = positions[i];
-    const distance = t < peak ? (peak - t) / peak : (t - peak) / (1 - peak);
-    link.style.setProperty('--offset', .01 + .98 * bend * (1 - distance ** 2));
+    const u = t < peak ? t / peak : (1 - t) / (1 - peak);
+    link.style.setProperty('--offset', .01 + amplitude * u * u * (3 - 2 * u));
   });
   frame = bend === goal && peak === targetPeak ? 0 : requestAnimationFrame(paint);
 }
