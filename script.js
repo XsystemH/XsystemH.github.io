@@ -1,4 +1,10 @@
 const dial = document.querySelector('.dial');
+const header = document.querySelector('.profile-page > header');
+function updateBarHeight() {
+  document.body.style.setProperty('--bar-height', header.getBoundingClientRect().height + 'px');
+}
+updateBarHeight();
+new ResizeObserver(updateBarHeight).observe(header);
 const line = dial.querySelector('path');
 const links = Array.from(dial.querySelectorAll('a'));
 const targets = links.map(link => document.querySelector(link.hash));
@@ -42,9 +48,10 @@ function relax() {
 
 window.addEventListener('pointermove', event => {
   if (event.pointerType === 'touch' || dial.querySelector(':focus-visible')) return;
-  const width = dial.getBoundingClientRect().width;
+  const {top, width, height} = dial.getBoundingClientRect();
+  if (event.clientY < top) { relax(); return; }
   const t = Math.max(0, Math.min(1, (width + 96 - event.clientX) / 96));
-  setProximity(t * t * (3 - 2 * t), event.clientY / dial.clientHeight);
+  setProximity(t * t * (3 - 2 * t), (event.clientY - top) / height);
 }, {passive:true});
 document.documentElement.addEventListener('pointerleave', relax);
 window.addEventListener('blur', relax);
@@ -85,7 +92,7 @@ dial.addEventListener('keydown', event => {
   links[next].focus({preventScroll:true});
 });
 dial.addEventListener('pointerdown', event => {
-  if (event.pointerType === 'touch') setProximity(1, event.clientY / dial.clientHeight);
+  if (event.pointerType === 'touch') setProximity(1, (event.clientY - dial.getBoundingClientRect().top) / dial.clientHeight);
 });
 dial.addEventListener('pointercancel', relax);
 window.addEventListener('scroll', trackSection, {passive:true});

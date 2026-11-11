@@ -161,7 +161,8 @@ img {
 
 .welcome { background: #030d22; }
 .welcome img { display: block; width: 100%; height: min(56.23vw, 77vh); object-fit: contain; }
-.profile-page [id] { scroll-margin-top: 1rem; }
+.profile-page > header { position: sticky; top: 0; z-index: 10; }
+.profile-page [id], .profile-page #experience { scroll-margin-top: calc(var(--bar-height, 96px) + 1rem); }
 .research-row { display: grid; grid-template-columns: minmax(150px, 30%) 1fr; align-items: center; gap: 1.5rem; padding: 1.2rem 0; }
 .research-row + .research-row { border-top: 1px solid #ddd; }
 .research-row img { display: block; width: 100%; }
@@ -176,9 +177,7 @@ img {
   --reach: clamp(42px, 6vw, 90px);
   --inset: clamp(9px, 1vw, 18px);
   position: fixed;
-  inset: 0 auto 0 0;
-  height: 100%;
-  height: 100dvh;
+  inset: var(--bar-height, 96px) auto 0 0;
   width: calc(var(--reach) + 6.5rem);
   display: block;
   margin: 0;
@@ -193,7 +192,9 @@ img {
   inset: 0 auto 0 0;
   height: 100%;
   width: var(--reach);
-  opacity: calc(var(--bend) * .52);
+  opacity: calc(var(--bend) * .78);
+  stroke-width: 2.5px;
+  overflow: visible;
 }
 #dial-links a {
   position: absolute;
